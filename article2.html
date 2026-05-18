@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechDéclic — Le guide des formations DevOps gratuites en 2026</title>
+    <style>
+        :root {
+            --bg-main: #060814;
+            --bg-surface: #0b1126;
+            --bg-surface-hover: #121b3a;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary-grad: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --accent-cyan: #22d3ee;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background-color: rgba(6, 8, 20, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+        .logo span {
+            background: var(--primary-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        main {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        section {
+            margin-bottom: 80px;
+            scroll-margin-top: 100px;
+        }
+
+        .section-header {
+            margin-bottom: 28px;
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .tag {
+            background: rgba(34, 211, 238, 0.1);
+            color: var(--accent-cyan);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #d1d5db;
+        }
+
+        .highlight-box {
+            background-color: var(--bg-surface);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-left: 3px solid var(--accent-cyan);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            margin: 28px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #d1d5db;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--accent-cyan);
+        }
+
+        .resource-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0 28px 0;
+        }
+
+        .resource-list li {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            font-size: 1rem;
+            color: #d1d5db;
+            transition: var(--transition);
+        }
+
+        .resource-list li:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+            background-color: var(--bg-surface-hover);
+        }
+
+        .resource-list li strong {
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 24px;
+            color: #4b5563;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">CtrlAlt<span>Tech</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html#article">Découvrir</a></li>
+                    <li><a href="index.html#propos">À propos</a></li>
+                    <li><a href="index.html#rubriques">Rubriques</a></li>
+                    <li><a href="index.html#futur">Articles</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="article">
+            <div class="section-header">
+                <div class="meta-info">
+                    <span class="tag">DevOps</span>
+                    <span>•</span>
+                    <span>⏱ 4 min de lecture</span>
+                </div>
+                <h2>Le guide des formations DevOps gratuites en 2026</h2>
+            </div>
+            <div class="article-content">
+                <p>Tu veux apprendre le DevOps, mais tu ne sais pas par où commencer. Les formations payantes coûtent souvent plusieurs milliers d'euros. La bonne nouvelle : les meilleures ressources existent gratuitement sur internet.</p>
+
+                <p>Le DevOps, c'est la pratique qui réunit les développeurs et les équipes en charge des serveurs. L'objectif est simple : livrer du code plus vite, avec moins de bugs. Les ingénieurs DevOps automatisent tout ce qui peut l'être. Ils construisent les pipelines qui font tourner la tech mondiale.</p>
+
+                <p>Avant de te lancer, suis un ordre logique. Le DevOps repose sur des briques techniques que tu poses l'une après l'autre. Commence par Linux, puis apprends Git, puis Docker, puis les outils d'automatisation comme GitLab CI ou GitHub Actions.</p>
+
+                <div class="highlight-box">
+                    <p><strong>Le chemin recommandé :</strong></p>
+                    <p>Linux → Git → Docker → CI/CD → Kubernetes → Cloud (AWS ou Azure)</p>
+                    <p>Compte entre 6 et 12 mois à raison d'une heure par jour.</p>
+                </div>
+
+                <p>Voici les ressources gratuites les plus solides du marché en 2026 :</p>
+
+                <ul class="resource-list">
+                    <li>
+                        <strong>TechWorld with Nana — YouTube</strong>
+                        La chaîne de référence pour apprendre Docker et Kubernetes depuis zéro. Les vidéos sont claires, courtes et gratuites. C'est le point de départ idéal.
+                    </li>
+                    <li>
+                        <strong>OpenClassrooms — Parcours DevOps</strong>
+                        Les cours sont accessibles gratuitement en mode découverte. Tu obtiens les bases solides de Linux, Git et des pipelines de déploiement.
+                    </li>
+                    <li>
+                        <strong>Linux Foundation — edX</strong>
+                        Le cours « Introduction to Linux » est auditable gratuitement. La Linux Foundation certifie les ingénieurs DevOps les plus sérieux du monde.
+                    </li>
+                    <li>
+                        <strong>Coursera — Google IT Support</strong>
+                        Google propose ce programme en accès gratuit en mode audit. Il couvre les réseaux, les systèmes d'exploitation et la ligne de commande.
+                    </li>
+                    <li>
+                        <strong>Killercoda — Labs interactifs</strong>
+                        Tu pratiques directement dans un terminal dans ton navigateur. Pas d'installation, pas de configuration. Tu tapes, tu apprends, tu retiens.
+                    </li>
+                </ul>
+
+                <p><strong>Exemple concret :</strong> Sarah, 23 ans, a suivi TechWorld with Nana pendant six mois le soir après son travail. Elle a obtenu la certification AWS Cloud Practitioner pour 100 euros. Aujourd'hui, elle est technicienne Cloud junior à 34 000 euros par an.</p>
+
+                <p>La certification change tout aux yeux des recruteurs. Une formation gratuite sans certification reste invisible sur un CV. Vise la AWS Cloud Practitioner ou la certification Kubernetes (CKAD) comme première cible concrète.</p>
+
+                <p>Le DevOps s'apprend en pratiquant, pas en lisant. Lance un serveur Linux sur ton ordinateur. Crée un premier pipeline sur GitHub. Déploie une application simple avec Docker. Chaque projet réel vaut dix heures de cours théoriques.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TechDéclic — Projet Média de Vulgarisation Tech. Conçu pour le confort de lecture.</p>
+    </footer>
+
+</body>
+
+</html>

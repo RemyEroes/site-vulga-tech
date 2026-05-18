@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechDéclic — Combien gagne-t-on vraiment dans la tech à 22 ans ?</title>
+    <style>
+        :root {
+            --bg-main: #060814;
+            --bg-surface: #0b1126;
+            --bg-surface-hover: #121b3a;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary-grad: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --accent-cyan: #22d3ee;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background-color: rgba(6, 8, 20, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+        .logo span {
+            background: var(--primary-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        main {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        section {
+            margin-bottom: 80px;
+            scroll-margin-top: 100px;
+        }
+
+        .section-header {
+            margin-bottom: 28px;
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .tag {
+            background: rgba(34, 211, 238, 0.1);
+            color: var(--accent-cyan);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #d1d5db;
+        }
+
+        .salary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 28px 0;
+        }
+
+        .salary-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .salary-card:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+            background-color: var(--bg-surface-hover);
+        }
+
+        .salary-card .job-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .salary-card .salary-amount {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #22d3ee 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+
+        .salary-card .salary-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .highlight-box {
+            background-color: var(--bg-surface);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-left: 3px solid var(--accent-cyan);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            margin: 28px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #d1d5db;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 24px;
+            color: #4b5563;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .salary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">CtrlAlt<span>Tech</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html#article">Découvrir</a></li>
+                    <li><a href="index.html#propos">À propos</a></li>
+                    <li><a href="index.html#rubriques">Rubriques</a></li>
+                    <li><a href="index.html#futur">Articles</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="article">
+            <div class="section-header">
+                <div class="meta-info">
+                    <span class="tag">Salaires</span>
+                    <span>•</span>
+                    <span>⏱ 3 min de lecture</span>
+                </div>
+                <h2>Combien gagne-t-on vraiment dans la tech à 22 ans ?</h2>
+            </div>
+            <div class="article-content">
+                <p>Emma a 22 ans. Elle n'a pas de diplôme d'ingénieur. Elle travaille depuis huit mois comme analyste en cybersécurité junior. Son salaire net dépasse 2 100 euros par mois. Et elle télétravaille trois jours par semaine.</p>
+
+                <p>La tech paie mieux que la plupart des secteurs dès l'entrée. Un développeur junior gagne en moyenne 30 % de plus qu'un commercial débutant au même âge. Mais les salaires varient beaucoup selon le métier, la ville et l'entreprise. Voici les chiffres bruts, sans filtre.</p>
+
+                <div class="salary-grid">
+                    <div class="salary-card">
+                        <div class="job-title">Analyste cybersécurité junior</div>
+                        <div class="salary-amount">28–36 k€</div>
+                        <div class="salary-note">brut annuel · Paris</div>
+                    </div>
+                    <div class="salary-card">
+                        <div class="job-title">Pentester junior</div>
+                        <div class="salary-amount">32–42 k€</div>
+                        <div class="salary-note">brut annuel · Paris</div>
+                    </div>
+                    <div class="salary-card">
+                        <div class="job-title">Ingénieur DevOps junior</div>
+                        <div class="salary-amount">34–44 k€</div>
+                        <div class="salary-note">brut annuel · Paris</div>
+                    </div>
+                    <div class="salary-card">
+                        <div class="job-title">Technicien Cloud junior</div>
+                        <div class="salary-amount">30–38 k€</div>
+                        <div class="salary-note">brut annuel · Paris</div>
+                    </div>
+                </div>
+
+                <p>En province, ces chiffres baissent de 10 à 20 %. Mais le coût de la vie suit la même logique. Un ingénieur DevOps junior à Lyon ou à Bordeaux touche entre 28 000 et 36 000 euros brut par an. Son pouvoir d'achat reste souvent supérieur à celui de son homologue parisien.</p>
+
+                <p>Le salaire brut ne raconte pas toute l'histoire. Les entreprises tech ajoutent régulièrement des avantages concrets : tickets restaurant, mutuelle haut de gamme, abonnement formation (Udemy, Coursera), participation aux bénéfices. Certaines startups proposent aussi des actions. Évalue le package complet, pas seulement le chiffre sur la fiche de paie.</p>
+
+                <div class="highlight-box">
+                    <p><strong>La progression est rapide dans la tech.</strong></p>
+                    <p>Un ingénieur DevOps sénior avec trois ans d'expérience gagne entre 50 000 et 70 000 euros brut à Paris. Un pentester confirmé dépasse facilement les 55 000 euros. La courbe monte vite si tu te formes en continu.</p>
+                </div>
+
+                <p><strong>Exemple concret :</strong> Thomas a commencé comme technicien support à 26 000 euros brut. Il a obtenu deux certifications AWS en dix-huit mois. Son employeur lui a proposé une revalorisation à 38 000 euros. Il a refusé et signé ailleurs à 44 000 euros. Les compétences se négocient.</p>
+
+                <p>La cybersécurité manque de profils qualifiés. Les recruteurs cherchent activement des candidats motivés, même sans master. Une certification reconnue — CompTIA Security+, CEH, ou AWS Security — pèse souvent autant qu'un diplôme aux yeux d'un responsable technique.</p>
+
+                <p>Si tu hésites encore, compare avec d'autres secteurs au même niveau d'études. Un commercial junior démarre à 22 000 euros brut. Un employé de banque à 25 000 euros. La tech offre un point de départ plus élevé et une progression plus rapide. Les chiffres parlent d'eux-mêmes.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TechDéclic — Projet Média de Vulgarisation Tech. Conçu pour le confort de lecture.</p>
+    </footer>
+
+</body>
+
+</html>

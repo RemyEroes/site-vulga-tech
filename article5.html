@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechDéclic — C'est quoi une faille 0-day ? Le lexique pour briller</title>
+    <style>
+        :root {
+            --bg-main: #060814;
+            --bg-surface: #0b1126;
+            --bg-surface-hover: #121b3a;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary-grad: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --accent-cyan: #22d3ee;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background-color: rgba(6, 8, 20, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+        .logo span {
+            background: var(--primary-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        main {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        section {
+            margin-bottom: 80px;
+            scroll-margin-top: 100px;
+        }
+
+        .section-header {
+            margin-bottom: 28px;
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .tag {
+            background: rgba(34, 211, 238, 0.1);
+            color: var(--accent-cyan);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #d1d5db;
+        }
+
+        .lexique {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 28px 0;
+        }
+
+        .lexique-item {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            transition: var(--transition);
+        }
+
+        .lexique-item:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+            background-color: var(--bg-surface-hover);
+        }
+
+        .lexique-term {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .lexique-term .term-name {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+        }
+
+        .lexique-term .term-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-cyber {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+        }
+
+        .badge-devops {
+            background-color: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+        }
+
+        .badge-commun {
+            background-color: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+        }
+
+        .lexique-def {
+            font-size: 1rem;
+            color: #d1d5db;
+            margin-bottom: 10px;
+        }
+
+        .lexique-exemple {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .lexique-exemple::before {
+            content: 'En pratique : ';
+            font-weight: 600;
+            font-style: normal;
+            color: var(--accent-cyan);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 24px;
+            color: #4b5563;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">CtrlAlt<span>Tech</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html#article">Découvrir</a></li>
+                    <li><a href="index.html#propos">À propos</a></li>
+                    <li><a href="index.html#rubriques">Rubriques</a></li>
+                    <li><a href="index.html#futur">Articles</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="article">
+            <div class="section-header">
+                <div class="meta-info">
+                    <span class="tag">Lexique</span>
+                    <span>•</span>
+                    <span>⏱ 5 min de lecture</span>
+                </div>
+                <h2>C'est quoi une faille 0-day ? Le lexique pour briller</h2>
+            </div>
+            <div class="article-content">
+                <p>Tu lis une offre d'emploi en cybersécurité. Tu tombes sur « pentest », « SIEM », « zero-day », « ransomware ». Tu fermes l'onglet. Ce vocabulaire donne l'impression que le secteur est réservé aux initiés. Il ne l'est pas.</p>
+
+                <p>Chaque mot technique a une définition simple. Les professionnels de la tech utilisent ce jargon parce qu'il est précis et rapide, pas pour impressionner. Apprends ces termes et les offres d'emploi deviennent lisibles. Les entretiens deviennent des conversations normales.</p>
+
+                <p>Voici les 10 termes que tu vas entendre partout dans la tech. Un exemple concret accompagne chaque définition.</p>
+
+                <div class="lexique">
+
+                    <div class="lexique-item">
+                        <div class="lexique-term">
+                            <span class="term-name">Faille 0-day (zero-day)</span>
+                            <span class="term-badge badge-cyber">Cybersécurité</span>
+                        </div>
+                        <div class="lexique-def">Une faille 0-day est une vulnérabilité inconnue de l'éditeur du logiciel. Personne n'a encore publié de correctif. Les pirates l'exploitent avant que quiconque puisse se défendre. Le « 0 » signifie zéro jour de protection disponible.</div>
+                        <div class="lexique-exemple">En 2021, une faille 0-day dans Log4j a exposé des millions de serveurs dans le monde entier. Les équipes de sécurité ont travaillé nonstop pendant une semaine pour déployer les correctifs.</div>
+                    </div>
+
+                    <div class="lexique-item">
+                        <div class="lexique-term">
+                            <span class="term-name">Ransomware</span>
+                            <span class="term-badge badge-cyber">Cybersécurité</span>
+                        </div>
+                        <div class="lexique-def">Un ransomware est un logiciel malveillant qui chiffre les fichiers d'une organisation. Les données deviennent illisibles. Les pirates réclament une rançon pour fournir la clé de déchiffrement.</div>
+                        <div class="lexique-exemple">En 2021, une attaque ransomware a paralysé le système informatique du CHU de Rouen. L'hôpital a dû revenir au papier pendant des semaines et refuser certains patients.</div>
+                    </div>
+
+                    <div class="lexique-item">
+                        <div class="lexique-term">
+                            <span class="term-name">Pentest (test d'intrusion)</span>
+                            <span class="term-badge badge-cyber">Cybersécurité</span>
+                        </div>
+                        <div class="lexique-def">Un pentest est une attaque informatique légale et autorisée. L'entreprise mandate un expert pour tenter de s'infiltrer dans ses propres systèmes. L'objectif est de trouver les failles avant les vrais pirates.</div>
+                        <div class="lexique-exemple">Une banque engage un pentester pour tenter de pirater son application mobile. Le pentester découvre qu'un simple changement de chiffre dans une URL permet d'accéder aux comptes d'autres clients.</div>
+                    </div>
+
+                    <div class="lexique-item">
+                        <div class="lexique-term">
+                            <span class="term-name">Phishing</span>
+                            <span class="term-badge badge-cyber">Cybersécurité</span>
+                        </div>
+                        <div class="lexique-def">Le phishing est une tentative d'escroquerie par email ou par message. L'attaquant imite une entité de confiance — une banque, un opérateur, un collègue. Il pousse la victime à cliquer sur un lien ou à transmettre ses identifiants.</div>
+                        <div class="lexique-exemple">Tu reçois un email de « La Poste » t'indiquant qu'un colis t'attend. Tu cliques sur le lien et tu saisis ton numéro de carte. Le site est faux. Tes données partent directement chez les pirates.</div>
+                    </div>
+
+                    <div class="lexique-item">
+                        <div class="lexique-term">
+                            <span class="term-name">SIEM</span>
+                            <span class="term-badge badge-cyber">Cybersécurité</span>
+                        </div>
+                        <div class="lexique-def">Un SIEM (Système d'Information et de gestion des Événements de Sécurité) collecte et analyse les journaux de tous les systèmes d'une organisation. Il détecte les comportements suspects en temps réel et génère des alertes.</div>
+                        <div class="lexique-exemple">Le SIEM d'une entreprise détecte qu'un employé se connecte depuis Paris et depuis Tokyo en même temps. Il génère une alerte immédiate. L'équipe de sécurité bloque le compte en quelques minutes.</div>
+                    </div>
+
+                    <div class="lexique-item">
+                        <div class="lexique-term">
+                            <span class="term-name">CI/CD</span>
+                            <span class="term-badge badge-devops">DevOps</span>
+                        </div>
+                        <div class="lexique-def">La CI/CD signifie Intégration Continue et Livraison Continue (Continuous Integration / Continuous Delivery). C'est le système automatisé qui teste et déploie le code dès qu'un développeur envoie ses modifications.</div>
+                        <div class="lexique-exemple">Un développeur corrige un bug et envoie son code sur GitHub. La pipeline CI/CD lance automatiquement les tests, vérifie la qualité du code et déploie la correction en production en moins de dix minutes.</div>
+                    </div>
+
+                    <div class="lexique-item">
+                        <div class="lexique-term">
+                            <span class="term-name">Docker</span>
+                            <span class="term-badge badge-devops">DevOps</span>
+                        </div>
+                        <div class="lexique-def">Docker est un outil qui emballe une application avec tout ce dont elle a besoin pour fonctionner dans un conteneur isolé. Le même conteneur tourne de manière identique sur n'importe quel serveur.</div>
+                        <div class="lexique-exemple">Un développeur crée son application sur un Mac. Elle fonctionne sur son ordinateur. L'ingénieur DevOps la déploie sur un serveur Linux grâce à Docker. Elle fonctionne exactement de la même façon, sans aucune modification.</div>
+                    </div>
+
+                    <div class="lexique-item">
+                        <div class="lexique-term">
+                            <span class="term-name">Pare-feu (Firewall)</span>
+                            <span class="term-badge badge-commun">Commun</span>
+                        </div>
+                        <div class="lexique-def">Un pare-feu filtre le trafic réseau entrant et sortant. Il applique des règles définies par les administrateurs. Il bloque les connexions non autorisées et laisse passer le trafic légitime.</div>
+                        <div class="lexique-exemple">Le pare-feu d'une entreprise bloque automatiquement toute tentative de connexion vers les ports non utilisés. Un pirate qui scanne l'infrastructure ne reçoit aucune réponse — il ne sait même pas si des serveurs existent.</div>
+                    </div>
+
+                    <div class="lexique-item">
+                        <div class="lexique-term">
+                            <span class="term-name">API</span>
+                            <span class="term-badge badge-commun">Commun</span>
+                        </div>
+                        <div class="lexique-def">Une interface de programmation applicative (API) est un point d'accès standardisé qui permet à deux applications de communiquer. Elle définit quelles données peuvent être échangées et comment.</div>
+                        <div class="lexique-exemple">Quand tu commandes un taxi via une application, l'application envoie ta position à l'API Google Maps pour calculer l'itinéraire. Google Maps renvoie le résultat à l'application. Tout ça en moins d'une seconde.</div>
+                    </div>
+
+                    <div class="lexique-item">
+                        <div class="lexique-term">
+                            <span class="term-name">VPN</span>
+                            <span class="term-badge badge-commun">Commun</span>
+                        </div>
+                        <div class="lexique-def">Un réseau privé virtuel (VPN) chiffre ta connexion internet et masque ton adresse IP. Il crée un tunnel sécurisé entre ton appareil et le serveur de destination.</div>
+                        <div class="lexique-exemple">Un employé en télétravail se connecte au VPN de son entreprise. Sa connexion est chiffrée. Il accède aux ressources internes de l'entreprise comme s'il était physiquement au bureau, sans risque d'interception.</div>
+                    </div>
+
+                </div>
+
+                <p>Ces dix termes couvrent 80 % du vocabulaire que tu entendras en entretien. La tech n'est pas un langage secret. C'est un vocabulaire précis que tu apprends en quelques semaines. Commence par les retenir, puis cherche à comprendre comment chaque outil fonctionne concrètement.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TechDéclic — Projet Média de Vulgarisation Tech. Conçu pour le confort de lecture.</p>
+    </footer>
+
+</body>
+
+</html>
