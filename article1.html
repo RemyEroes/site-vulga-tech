@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechDéclic — Ta voie dans la tech sans jargon</title>
+    <style>
+        /* Design System - Vibes Cyber Moderne & Minimaliste */
+        :root {
+            --bg-main: #060814;
+            --bg-surface: #0b1126;
+            --bg-surface-hover: #121b3a;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary-grad: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --accent-cyan: #22d3ee;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Barre de navigation moderne en "Blur" */
+        header {
+            background-color: rgba(6, 8, 20, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+        .logo span {
+            background: var(--primary-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Conteneur principal bien aéré */
+        main {
+            max-width: 760px;
+            /* Largeur idéale pour le confort de lecture des yeux */
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Hero Section immersive */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.04em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #22d3ee 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 580px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Bouton d'action (CTA) */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary-grad);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Layout des Sections */
+        section {
+            margin-bottom: 80px;
+            scroll-margin-top: 100px;
+        }
+
+        /* En-tête des sections pour le contexte */
+        .section-header {
+            margin-bottom: 28px;
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .tag {
+            background: rgba(34, 211, 238, 0.1);
+            color: var(--accent-cyan);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        /* Zone de lecture optimisée */
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #d1d5db;
+        }
+
+        /* Rubriques sous forme de boutons géants de navigation */
+        .rubriques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .rubrique-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 24px 16px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .rubrique-card .emoji {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .rubrique-card:hover {
+            background-color: var(--bg-surface-hover);
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        /* À Propos relooké en encadré focus */
+        .about-box {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Flux d'articles futurs (Plan Éditorial) */
+        .plan-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .plan-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .plan-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background-color: var(--bg-surface-hover);
+        }
+
+        .plan-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .plan-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            padding-right: 80px;
+        }
+
+        .badge-soon {
+            font-size: 0.7rem;
+            font-weight: 700;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .plan-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Pied de page discret */
+        footer {
+            text-align: center;
+            padding: 60px 24px;
+            color: #4b5563;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive fluide */
+        @media (max-width: 640px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">CtrlAlt<span>Tech</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html#article">Découvrir</a></li>
+                    <li><a href="index.html#propos">À propos</a></li>
+                    <li><a href="index.html#rubriques">Rubriques</a></li>
+                    <li><a href="index.html#futur">Articles</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="article">
+            <div class="section-header">
+                <div class="meta-info">
+                    <span class="tag">Cybersécurité</span>
+                    <span>•</span>
+                    <span>⏱ 3 min de lecture</span>
+                </div>
+                <h2>Devenir Pentester sans être un génie des maths</h2>
+            </div>
+            <div class="article-content">
+                <p>Pour sécuriser ta maison, tu fermes la porte à clé. Mais as-tu vérifié la petite fenêtre de la cave ?
+                    Un ami décide de tester et réussit à entrer chez toi. En informatique, cet ami s'appelle un
+                    pentester.</p>
+
+                <p>Un pentester est un « hacker éthique ». Son métier consiste à pirater légalement les systèmes
+                    informatiques. Il cherche les failles de sécurité avant les vrais cybercriminels. Les grandes
+                    entreprises le paient pour s'infiltrer de manière invisible.</p>
+
+                <p>Oublie le cliché du mathématicien devant son écran noir. Ce métier ne demande aucun calcul complexe.
+                    Tu n'as pas besoin de résoudre des équations de génie. Le pentest demande surtout de la logique, de
+                    la curiosité et de l'astuce.</p>
+
+                <p>C'est un véritable travail de détective numérique. Tu passes ta journée à chercher des indices et des
+                    erreurs. Les développeurs oublient parfois des détails simples en créant des sites web. C'est là que
+                    ton esprit d'analyse intervient.</p>
+
+                <p><strong>Exemple concret :</strong> Prenons un exemple réel sur un site de vente en ligne. Un
+                    pentester modifie simplement un chiffre dans l'adresse internet de sa page. Il réussit ainsi à
+                    obtenir une réduction interdite. Il teste des failles humaines et non des mathématiques.</p>
+
+                <p>Aujourd'hui, la cybersécurité est devenue une priorité vitale. Les cyberattaques se multiplient et
+                    bloquent chaque jour des hôpitaux ou des entreprises. Le marché s'arrache ces profils protecteurs.
+                    Les recruteurs recherchent activement une nouvelle génération de passionnés.</p>
+
+                <p>Tu veux tenter l'aventure ? Des plateformes en ligne gratuites permettent de s'exercer facilement de
+                    chez soi. Tu n'as pas besoin d'un long diplôme d'ingénieur. Ta motivation et ta curiosité feront
+                    toute la différence pour réussir ton switch professionnel.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TechDéclic — Projet Média de Vulgarisation Tech. Conçu pour le confort de lecture.</p>
+    </footer>
+
+</body>
+
+</html>

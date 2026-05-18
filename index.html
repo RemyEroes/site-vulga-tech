@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechDéclic — Ta voie dans la tech sans jargon</title>
+    <style>
+        /* Design System - Vibes Cyber Moderne & Minimaliste */
+        :root {
+            --bg-main: #060814;
+            --bg-surface: #0b1126;
+            --bg-surface-hover: #121b3a;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary-grad: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --accent-cyan: #22d3ee;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Barre de navigation moderne en "Blur" */
+        header {
+            background-color: rgba(6, 8, 20, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+        .logo span {
+            background: var(--primary-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Conteneur principal bien aéré */
+        main {
+            max-width: 760px; /* Largeur idéale pour le confort de lecture des yeux */
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Hero Section immersive */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.04em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #22d3ee 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 580px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Bouton d'action (CTA) */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary-grad);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Layout des Sections */
+        section {
+            margin-bottom: 80px;
+            scroll-margin-top: 100px;
+        }
+
+        /* En-tête des sections pour le contexte */
+        .section-header {
+            margin-bottom: 28px;
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .tag {
+            background: rgba(34, 211, 238, 0.1);
+            color: var(--accent-cyan);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        /* Zone de lecture optimisée */
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #d1d5db;
+        }
+
+        /* Rubriques sous forme de boutons géants de navigation */
+        .rubriques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .rubrique-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 24px 16px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .rubrique-card .emoji {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .rubrique-card:hover {
+            background-color: var(--bg-surface-hover);
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        /* À Propos relooké en encadré focus */
+        .about-box {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Flux d'articles futurs (Plan Éditorial) */
+        .plan-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .plan-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .plan-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background-color: var(--bg-surface-hover);
+        }
+
+        .plan-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .plan-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            padding-right: 80px;
+        }
+
+        .badge-soon {
+            font-size: 0.7rem;
+            font-weight: 700;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .plan-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Pied de page discret */
+        footer {
+            text-align: center;
+            padding: 60px 24px;
+            color: #4b5563;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive fluide */
+        @media (max-width: 640px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .about-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">CtrlAlt<span>Tech</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#article">Découvrir</a></li>
+                    <li><a href="#propos">À propos</a></li>
+                    <li><a href="#rubriques">Rubriques</a></li>
+                    <li><a href="#futur">Articles</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <h1>La tech sans filtre <span>ni jargon.</span></h1>
+            <p>Découvre la cybersécurité et le DevOps simplement. Trouve ta voie et lance-toi sans diplôme d'ingénieur.</p>
+            <a href="#article" class="btn-primary">Commencer la lecture</a>
+        </div>
+
+        <section id="article">
+            <div class="section-header">
+                <div class="meta-info">
+                    <span class="tag">Dossier</span>
+                    <span>•</span>
+                    <span>⏱ 2 min de lecture</span>
+                </div>
+                <h2>Cybersécurité et DevOps : les deux piliers de l'ombre</h2>
+            </div>
+            <div class="article-content">
+                <p>Imagine ton application mobile préférée. Tu commandes un repas en un seul clic. Soudain, l'application plante complètement. Un pirate vole tes données bancaires privées. Cette situation est frustrante.</p>
+                
+                <p>Pour éviter ce chaos, deux équipes travaillent dans l'ombre. Ce sont les experts en cybersécurité et les ingénieurs DevOps. La cybersécurité protège activement les systèmes informatiques. Les professionnels bloquent les attaques des hackers malveillants au quotidien.</p>
+                
+                <p>Le DevOps rassemble les créateurs d'applications et les gestionnaires de serveurs. Ils collaborent pour livrer les nouveautés rapidement et sans bug. C'est le véritable moteur de la tech moderne.</p>
+                
+                <p>Sans ces métiers, le monde numérique s'arrête instantanément. Une banque en ligne ne fonctionne pas sans sécurité. Netflix ne tient pas sans une infrastructure DevOps solide. Les entreprises s'arrachent ces profils aujourd'hui.</p>
+                
+                <p>Prenons un exemple concret. Ton jeu vidéo favori publie une mise à jour. Les ingénieurs DevOps automatisent l'envoi du jeu sur les serveurs mondiaux. En même temps, les experts en cybersécurité vérifient le code. Ils bloquent les failles de sécurité de manière invisible.</p>
+                
+                <p>Sur TechDéclic, nous levons le voile sur ces opportunités. Tu découvriras des fiches métiers claires et des salaires transparents. Nous partageons des guides simples et des témoignages authentiques pour te lancer. Prêt à hacker ton avenir professionnel ? Bienvenue à bord !</p>
+            </div>
+        </section>
+
+        <section id="propos">
+            <div class="about-box">
+                <div class="section-header">
+                    <div class="meta-info">Notre Manifesto</div>
+                    <h2>À propos de TechDéclic</h2>
+                </div>
+                <div class="article-content">
+                    <p>Bienvenue sur TechDéclic ! Nous construisons ce site internet spécifiquement pour toi. Tu as entre 18 et 25 ans ? La tech t'attire mais son jargon complexe te bloque ? Tu es au bon endroit.</p>
+                    
+                    <p>Ici, nous brisons les barrières invisibles de l'informatique. Notre équipe éditoriale te fait découvrir deux univers majeurs : la cybersécurité et le DevOps. Oublie les termes techniques obscurs. Nous te montrons la réalité concrète du quotidien des professionnels.</p>
+                    
+                    <p>Nous analysons les métiers de l'ombre, les salaires réels et les formations accessibles sans diplôme d'ingénieur. Notre mission principale est simple. Nous voulons t'aider à choisir ton avenir avec confiance et motivation. Explore nos rubriques, pose tes questions et trouve enfin ton déclic tech !</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="rubriques">
+            <div class="section-header">
+                <div class="meta-info">Au programme</div>
+                <h2>Qu'est-ce qui t'intéresse ?</h2>
+            </div>
+            <div class="rubriques-grid">
+                <div class="rubrique-card">
+                    <span class="emoji">👥</span>
+                    Le métier en vrai
+                </div>
+                <div class="rubrique-card">
+                    <span class="emoji">🎓</span>
+                    Les formations
+                </div>
+                <div class="rubrique-card">
+                    <span class="emoji">💰</span>
+                    Ce que ça paye
+                </div>
+                <div class="rubrique-card">
+                    <span class="emoji">🚀</span>
+                    Par où commencer
+                </div>
+            </div>
+        </section>
+
+        <section id="futur">
+            <div class="section-header">
+                <div class="meta-info">Prochainement</div>
+                <h2>Les articles en cours de rédaction</h2>
+            </div>
+            <div class="plan-feed">
+                <a href="/article1.html" style="text-decoration: none;">
+                <div class="plan-card">
+                    <div class="plan-top">
+                        <div class="plan-title">Devenir Pentester sans être un génie des maths</div>
+                        <span class="badge-soon">Bientôt</span>
+                    </div>
+                    <div class="plan-desc">Découvre le quotidien d'un hacker éthique payé pour tester légalement la sécurité des entreprises.</div>
+                </div>
+                </a>
+                
+                <div class="plan-card">
+                    <div class="plan-top">
+                        <div class="plan-title">Le guide ultime des formations DevOps gratuites en 2026</div>
+                        <span class="badge-soon">Bientôt</span>
+                    </div>
+                    <div class="plan-desc">Nous sélectionnons les meilleurs cursus en ligne et financés pour te lancer rapidement dans ce domaine.</div>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-top">
+                        <div class="plan-title">Combien gagne-t-on vraiment dans la tech à 22 ans ?</div>
+                        <span class="badge-soon">Bientôt</span>
+                    </div>
+                    <div class="plan-desc">Une enquête transparente et sans tabou sur les salaires des débutants en cybersécurité et DevOps.</div>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-top">
+                        <div class="plan-title">Témoignage : De serveur en restauration à ingénieur Cloud</div>
+                        <span class="badge-soon">Bientôt</span>
+                    </div>
+                    <div class="plan-desc">Lucas te raconte comment il a changé de vie et de salaire en seulement douze mois.</div>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-top">
+                        <div class="plan-title">C'est quoi une faille 0-day ? Le lexique pour briller</div>
+                        <span class="badge-soon">Bientôt</span>
+                    </div>
+                    <div class="plan-desc">Apprends à maîtriser le vocabulaire technique essentiel des recruteurs sans te prendre la tête.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TechDéclic — Projet Média de Vulgarisation Tech. Conçu pour le confort de lecture.</p>
+    </footer>
+
+</body>
+</html>
